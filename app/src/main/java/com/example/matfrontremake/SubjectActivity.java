@@ -18,6 +18,7 @@ public class SubjectActivity extends AppCompatActivity {
     private QuestionDAO questionDAO;
     private DatabaseHelper subjectDAO;
     ArrayList<String> subject_id, subject_text;
+    Button rankingBtn;
     CustomAdapter customAdapter;
     RecyclerView recyclerView;
 
@@ -29,6 +30,8 @@ public class SubjectActivity extends AppCompatActivity {
         subjectDAO = new DatabaseHelper(SubjectActivity.this);
         subject_id = new ArrayList<>();
         subject_text = new ArrayList<>();
+        rankingBtn = findViewById(R.id.showRanking);
+
 
         recyclerView = findViewById(R.id.reciclerView);
 
@@ -41,12 +44,21 @@ public class SubjectActivity extends AppCompatActivity {
                 String subject = "";
                 if(v.getId() == R.id.resolver_button){
                     subject = (String) v.getTag();
+
                 }
                 Intent intent = new Intent(SubjectActivity.this, QuestionActivity.class);
                 intent.putExtra("subject", subject);
                 startActivity(intent);
             }
         };
+
+        rankingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SubjectActivity.this, RankingActivity.class);
+                startActivity(intent);
+            }
+        });
 
         guardaDadosemArray();
         customAdapter = new CustomAdapter(SubjectActivity.this, subject_id, subject_text, listener);
