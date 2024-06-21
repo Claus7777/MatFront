@@ -111,7 +111,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    void updateRanking(int userId){
+    void updateRanking(int userId, int pointsToAdd){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT " + COLUMN_USER_POINTS + " FROM " + TABLE_USERS + " WHERE " + COLUMN_USER_ID + " = ?";
         Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(userId)});
@@ -120,7 +120,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor.close();
 
             // Incrementa os pontos
-            int newPoints = currentPoints + 100;
+            int newPoints = currentPoints + pointsToAdd;
 
             // Atualiza os pontos no banco de dados
             ContentValues cv = new ContentValues();

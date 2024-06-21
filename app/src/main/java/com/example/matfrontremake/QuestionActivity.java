@@ -86,11 +86,12 @@ public class QuestionActivity extends AppCompatActivity {
 
                 // Verifica se a resposta está correta
                 if (selectedAnswer.equals(correctAnswer)) {
-                    questionDAO.updateRanking(4);
+                    questionDAO.updateRanking(4, 100);
                     Toast.makeText(QuestionActivity.this, "Resposta Correta!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(QuestionActivity.this, RankingActivity.class);
                     startActivity(intent);
                 } else {
+                    questionDAO.updateRanking(4, -200);
                     Toast.makeText(QuestionActivity.this, "Resposta Errada!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(QuestionActivity.this, RankingActivity.class);
                     startActivity(intent);
