@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MatFrontRemake</string>
+    <string name="title_activity_add_materia">AddMateriaActivity</string>
+    <string name="title_activity_ranking">RankingActivity</string>
+</resources>
